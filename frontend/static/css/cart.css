@@ -1,0 +1,149 @@
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+.container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    position: relative;
+}
+h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 30px;
+    font-size: 2em;
+}
+.product-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+.product-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: #fafafa;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.product-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+.product-item img {
+    max-width: 80px;
+    margin-right: 20px;
+    border-radius: 10px;
+}
+.product-item-details {
+    flex-grow: 1;
+}
+.product-item-title {
+    font-size: 1.2em;
+    margin: 0 0 10px;
+    color: #333;
+}
+.product-item-total {
+    font-size: 1em;
+    color: #555;
+    font-weight: bold;
+}
+.product-item-actions {
+    display: flex;
+    align-items: center;
+}
+.btn {
+    padding: 8px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-left: 10px;
+}
+.btn:hover {
+    background-color: #0056b3;
+}
+.btn-remove {
+    background-color: #dc3545;
+    align-self: flex-start;
+    margin-top: -15px;
+}
+.btn-remove:hover {
+    background-color: #c82333;
+}
+.summary {
+    text-align: right;
+    margin-top: 20px;
+    font-size: 1.2em;
+    color: #333;
+}
+.btn-checkout {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    font-size: 1.2em;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+}
+.btn-checkout:hover {
+    background-color: #218838;
+}
+.quantity-control {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+    max-width: 105px;
+}
+.quantity-control button {
+    background-color: #ddd;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 30px;
+    transition: background-color 0.3s ease;
+}
+.quantity-control button:hover {
+    background-color: #ccc;
+}
+.quantity-control input {
+    width: 40px;
+    text-align: center;
+    border: none;
+    font-size: 16px;
+    padding: 5px;
+}
+.btn-home {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background-color: #28a745;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.btn-home:hover {
+    background-color: #218838;
+}

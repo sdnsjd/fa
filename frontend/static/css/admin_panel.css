@@ -1,0 +1,238 @@
+/* Общие стили */
+.body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+/* Хедер */
+.header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.nav-buttons {
+    display: flex;
+    align-items: center;
+}
+
+.nav-buttons button {
+    background-color: #555;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    margin-left: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.nav-buttons button:hover {
+    background-color: #777;
+}
+
+/* Дропдаун меню для пользователя */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.username {
+    cursor: pointer;
+    padding: 10px 20px;
+    background-color: #555;
+    border-radius: 5px;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content button {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    border: none;
+    background: none;
+    width: 100%;
+    text-align: left;
+}
+
+.dropdown-content button:hover {
+    background-color: #f1f1f1;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Основной заголовок */
+h1 {
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Стили для панели управления продуктами */
+.product-management {
+    max-width: 1000px;
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    border-radius: 8px;
+}
+
+.product-management h2 {
+    margin-top: 0;
+}
+
+/* Таблица управления продуктами */
+.product-management table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    table-layout: fixed; /* Фиксированное расположение для равномерного распределения */
+}
+
+/* Ширина для столбца ID (расширяем) */
+.product-management th:nth-child(1),
+.product-management td:nth-child(1) {
+    width: 15%;  /* Увеличиваем ширину для столбца ID */
+    word-wrap: break-word; /* Разбиваем длинные ID, если нужно */
+}
+
+/* Уменьшаем ширину для других столбцов */
+.product-management th:nth-child(2),
+.product-management td:nth-child(2) {
+    width: 12%; /* Уменьшаем столбец Название */
+}
+
+.product-management th:nth-child(3),
+.product-management td:nth-child(3) {
+    width: 10%; /* Уменьшаем столбец Цена */
+}
+
+.product-management th:nth-child(4),
+.product-management td:nth-child(4) {
+    width: 10%; /* Уменьшаем столбец Размер */
+}
+
+.product-management th:nth-child(5),
+.product-management td:nth-child(5) {
+    width: 12%; /* Уменьшаем столбец Категория */
+}
+
+.product-management th:nth-child(6),
+.product-management td:nth-child(6) {
+    width: 12%; /* Уменьшаем столбец Изображение */
+}
+
+/* Новый столбец Кол-во */
+.product-management th:nth-child(7),
+.product-management td:nth-child(7) {
+    width: 10%; /* Ширина для нового столбца "Кол-во" */
+    text-align: center; /* Центрируем количество */
+}
+
+/* Действия */
+.product-management th:nth-child(8),
+.product-management td:nth-child(8) {
+    width: 12%; /* Уменьшаем столбец Действия */
+}
+
+/* Общие стили для всех ячеек и заголовков таблицы */
+.product-management th, td {
+    padding: 10px;
+    text-align: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Стили для кнопок в таблице */
+.product-management button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.product-management button:hover {
+    background-color: #0056b3;
+}
+
+/* Стили для изображений товаров */
+.product-management img {
+    max-width: 100px;
+    max-height: 100px;
+    object-fit: cover;
+    border-radius: 5px; /* Округлые углы */
+}
+
+.modal {
+    display: none; /* Скрыть модальное окно по умолчанию */
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+    padding-top: 60px;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+.close-btn {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.main-menu-btn {
+    position: absolute;
+    top: 60px;
+    left: 10px;
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.main-menu-btn:hover {
+    background-color: #45a049;
+}

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tshirtsocksclub</title>
+    <link rel="stylesheet" href="/frontend/static/css/index.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+</head>
+<body>
+
+    <div class="header">
+        <div class="logo">tshirtsocksclub</div>
+        <div class="nav-buttons">
+            <button onclick="goToCart()">Корзина</button>
+            {% if user %}
+                <div class="dropdown">
+                    <span class="username" onclick="toggleDropdown()">{{ user }}</span>
+                    <div class="dropdown-content" id="dropdown-content">
+                        <button onclick="logout()">Выйти</button>
+                        {% if role == 'admin' %}
+                            <button onclick="goToAdminPanel()">Панель администратора</button>
+                        {% endif %}
+                    </div>
+                </div>
+            {% else %}
+                <button onclick="register()">Регистрация</button>
+                <button onclick="login()">Войти</button>
+            {% endif %}
+        </div>
+    </div>
+
+
+<div class="sidebar">
+    <div class="category active" onclick="selectCategory('tshirts')">
+        Футболки
+    </div>
+    <div class="filter-panel" id="tshirts-filter-panel">
+        <div class="size-filter">
+            <strong>Размер:</strong>
+            <div class="sizes">
+                <span class="size" onclick="selectSize('S')">S</span>
+                <span class="size" onclick="selectSize('M')">M</span>
+                <span class="size" onclick="selectSize('L')">L</span>
+                <span class="size" onclick="selectSize('XL')">XL</span>
+            </div>
+        </div>
+        <div class="price-filter">
+            <strong>Цена:</strong>
+            <div class="price-slider">
+                <input type="number" id="min-price" value="0" min="0" max="100" step="1" oninput="updatePrice('min')">
+                <span>—</span>
+                <input type="number" id="max-price" value="100" min="0" max="100" step="1" oninput="updatePrice('max')">
+            </div>
+            <div class="slider-container">
+                <div class="slider"></div>
+                <div class="slider-thumb left" id="min-thumb" onmousedown="startDrag('min')"></div>
+                <div class="slider-thumb right" id="max-thumb" onmousedown="startDrag('max')"></div>
+            </div>
+            <!-- Кнопка сброса фильтров -->
+            <button onclick="resetFilters()">Сбросить фильтры</button>
+        </div>
+    </div>
+    <div class="category" onclick="selectCategory('socks')">
+        Носки
+    </div>
+</div>
+
+
+    {% set grouped_products = {} %}
+    {% for product in products %}
+        {% set key = product.name ~ '_' ~ product.size %}
+        {% if key not in grouped_products %}
+            {% set grouped_products = grouped_products.update({(key): {
+                "id": product.id,
+                "name": product.name,
+                "price": product.price,
+                "main_image": product.main_image,
+                "size": product.size,
+                "category": product.category
+            }}) %}
+        {% endif %}
+    {% endfor %}
+
+
+    <div class="content-wrapper">
+        <div class="main">
+            {% set displayed_products = {} %}
+            {% for key, product in grouped_products.items() %}
+                {% if product.name not in displayed_products %}
+                    <div class="product" data-product-name="{{ product.name }}" data-category="{{ product.category.value }}" >
+                        <img src="{{ product.main_image }}" alt="{{ product.name }}" class="product-image">
+                        <div class="price">${{ product.price }}</div>
+                        <i class="fas fa-expand expand-icon" onclick="openModal('{{ product.id }}')"></i>
+                        <div class="product-name">{{ product.name }}</div>
+                        <div class="available-sizes">
+                            {% if product.category != 'socks' %}
+                                {% for k, p in grouped_products.items() if p.name == product.name %}
+                                    <span class="size-label" onclick="selectProductSize(this, '{{ p.id }}', '{{ p.size }}')">{{ p.size }}</span>
+                                {% endfor %}
+                            {% endif %}
+                        </div>
+                        {% if product.category.value == 'socks' %}
+                            <button class="add-to-cart" onclick="addToCart('{{ product.id }}', true)"><i class="fas fa-shopping-cart"></i></button>
+                        {% else %}
+                            <button class="add-to-cart" onclick="addToCart('{{ product.name }}', false)"><i class="fas fa-shopping-cart"></i></button>
+                        {% endif %}
+                    </div>
+                    {% set displayed_products = displayed_products.update({(product.name): true}) %}
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+
+
+        <!-- Модальное окно -->
+    <div class="modal" id="imageModal" onclick="closeModalOnClickOutside(event)">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <img id="modalImage" src="" alt="Product Image">
+            <div class="nav-arrows">
+                <button onclick="prevImage()">&larr;</button>
+                <button onclick="nextImage()">&rarr;</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/frontend/static/js/index.js"></script>
+
+</body>
+</html>
+
+
+
+
+

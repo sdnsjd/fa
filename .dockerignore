@@ -1,0 +1,6 @@
+venv/
+__pycache__/
+*.pyc
+*.pyo
+pyvenv.cfg
+docker-compose.yml

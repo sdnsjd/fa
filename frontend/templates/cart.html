@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products in Cart</title>
+    <link rel="stylesheet" href="/frontend/static/css/cart.css">
+
+
+</head>
+
+<body>
+    <button class="btn-home" onclick="window.location.href='/'">На главную</button>
+    <div class="container">
+        <h1>Корзина</h1>
+        <ul class="product-list">
+            {% if not products %}
+                <li class="product-item">Ваша корзина пуста</li>
+            {% else %}
+                {% for product in products %}
+                    <li class="product-item" data-product-id="{{ product.id }}">
+                        <img src="{{ product.main_image }}" alt="{{ product.name }}">
+                        <div class="product-item-details">
+                            <p class="product-item-title">{{ product.name }}</p>
+                            {% if product.size and product.category.value != 'socks' %}
+                                <p class="product-item-size">Размер: {{ product.size }}</p>
+                            {% endif %}
+                            <div class="quantity-control">
+                                <button onclick="decreaseQuantity('{{ product.id }}')">-</button>
+                                <input type="text" value="{{ product.quantity }}" readonly>
+                                <button onclick="increaseQuantity('{{ product.id }}')">+</button>
+                            </div>
+                            <p class="product-item-total">Общая цена: ${{ product.total_price }}</p>
+                        </div>
+                        <div class="product-item-actions">
+                            <button class="btn btn-remove" onclick="removeProduct('{{ product.id }}')">Удалить</button>
+                        </div>
+                    </li>
+                {% endfor %}
+            {% endif %}
+        </ul>
+        <div class="summary">
+            Общая сумма: ${{ total_price }}
+        </div>
+        <button class="btn-checkout" onclick="checkout()">Оплатить</button>
+    </div>
+    <script src="/frontend/static/js/cart.js"></script>
+
+</body>
+</html>
